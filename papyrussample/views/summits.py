@@ -3,11 +3,16 @@ from pyramid.view import view_config
 from papyrussample.models import DBSession, Summit
 from papyrus.protocol import Protocol
 
-proto = Protocol(DBSession, Summit, Summit.geom, epsg=4326)
+proto = Protocol(DBSession, Summit, 'geom')
 
-@view_config(route_name='summits_read', renderer='geojson')
-def read(request):
+@view_config(route_name='summits_read_many', renderer='geojson')
+def read_many(request):
     return proto.read(request)
+
+@view_config(route_name='summits_read_one', renderer='geojson')
+def read_one(request):
+    id = request.matchdict.get('id', None)
+    return proto.read(request, id=id)
 
 @view_config(route_name='summits_count', renderer='string')
 def count(request):
@@ -19,8 +24,10 @@ def create(request):
 
 @view_config(route_name='summits_update', renderer='geojson')
 def update(request):
-    return proto.create(request)
+    id = request.matchdict['id']
+    return proto.update(request, id)
 
 @view_config(route_name='summits_delete')
 def delete(request):
-    return proto.delete(request)
+    id = request.matchdict['id']
+    return proto.delete(request, id)
