@@ -41,6 +41,9 @@ class Summit(Base):
     @property
     def __geo_interface__(self):
         id = self.sommet_id
-        geometry = loads(str(self.geom.geom_wkb))
+        if hasattr(self.geom, 'shape') and self.geom.shape is not None:
+            geometry = self.geom.shape
+        else:
+            geometry = loads(str(self.geom.geom_wkb))
         properties = dict(name=self.name, elevation=self.elevation)
         return geojson.Feature(id=id, geometry=geometry, properties=properties)
