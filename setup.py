@@ -9,6 +9,7 @@ CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 
 requires = [
     'pyramid',
+    'pyramid_beaker',
     'SQLAlchemy',
     'transaction',
     'repoze.tm2',
@@ -16,10 +17,18 @@ requires = [
     'WebError',
     'papyrus',
     'psycopg2',
-    ]
+]
 
 if sys.version_info[:3] < (2,5,0):
-    requires.append('pysqlite')
+   requires.append('pysqlite')
+    
+entry_points = """\
+    [paste.app_factory]
+    main = papyrussample:main
+
+    [paste.app_install]
+    main = paste.script.appinstall:Installer
+"""
 
 setup(name='PapyrusSample',
       version='0.0',
@@ -34,16 +43,14 @@ setup(name='PapyrusSample',
       author='',
       author_email='',
       url='',
-      keywords='web wsgi bfg pylons pyramid',
+      keywords='web pyramid pylons',
       packages=find_packages(),
       include_package_data=True,
       zip_safe=False,
-      test_suite='papyrussample',
-      install_requires = requires,
-      entry_points = """\
-      [paste.app_factory]
-      main = papyrussample:main
-      """,
+      install_requires=requires,
+      tests_require=requires,
+      test_suite="papyrussample",
+      entry_points=entry_points,
       paster_plugins=['pyramid'],
       )
 

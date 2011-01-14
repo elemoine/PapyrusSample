@@ -1,25 +1,31 @@
 import unittest
-from pyramid.config import Configurator
-from pyramid import testing
 
-def _initTestingDB():
-    from sqlalchemy import create_engine
-    from papyrussample.models import initialize_sql
-    session = initialize_sql(create_engine('sqlite://'))
-    return session
-
-class TestMyView(unittest.TestCase):
+class MyHandlerTests(unittest.TestCase):
     def setUp(self):
+        from pyramid.config import Configurator
+        import pyramid_sqla
+        self.engine = pyramid_sqla.add_engine(url='sqlite://')
+        self.session = pyramid_sqla.get_session()()
         self.config = Configurator(autocommit=True)
         self.config.begin()
-        _initTestingDB()
+        # Must call ``self.config.begin()`` in tests before using config.
 
     def tearDown(self):
+        import pyramid_sqla
         self.config.end()
+        # After calling ``self.config.end()``, don't use config.
+        self.session = None
+        pyramid_sqla.reset()
 
-    def test_it(self):
-        from papyrussample.views import my_view
-        request = testing.DummyRequest()
-        info = my_view(request)
-        self.assertEqual(info['root'].name, 'root')
-        self.assertEqual(info['project'], 'PapyrusSample')
+    def _makeOne(self, request):
+        from papyrussample.handlers import MainHandler
+        return MainHandler(request)
+
+    def test_index(self):
+        request = DummyRequest()
+        handler = self._makeOne(request)
+        info = handler.index()
+        self.assertEqual(info['project'], 'papyrussample')
+
+class DummyRequest(object):
+    pass
