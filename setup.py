@@ -18,6 +18,7 @@ requires = [
     'zope.sqlalchemy',
     'WebError',
     'papyrus',
+    'papyrus_tilecache',
     'psycopg2',
 ]
 

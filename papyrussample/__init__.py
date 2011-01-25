@@ -8,6 +8,8 @@ from pyramid_sqla.static import add_static_route
 
 from papyrus.renderers import geojson_renderer_factory
 
+import papyrus_tilecache
+
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
@@ -26,6 +28,9 @@ def main(global_config, **settings):
 
     config.add_subscriber('papyrussample.subscribers.add_renderer_globals',
                           'pyramid.events.BeforeRender')
+
+    # Plug TileCache in
+    config.include(papyrus_tilecache)
 
     # Set up routes and views
     config.include(pyramid_handlers.includeme)
