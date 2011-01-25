@@ -1,6 +1,6 @@
 import logging
 
-from pyramid.view import action
+from pyramid_handlers import action
 
 from papyrussample.models import Session, Summit
 from papyrus.protocol import Protocol

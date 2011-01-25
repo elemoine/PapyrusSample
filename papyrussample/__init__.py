@@ -1,6 +1,9 @@
 from pyramid.config import Configurator
+
 import pyramid_beaker
 import pyramid_sqla
+import pyramid_handlers
+
 from pyramid_sqla.static import add_static_route
 
 from papyrus.renderers import geojson_renderer_factory
@@ -25,6 +28,7 @@ def main(global_config, **settings):
                           'pyramid.events.BeforeRender')
 
     # Set up routes and views
+    config.include(pyramid_handlers.includeme)
     config.add_handler('summits_read_many', '/summits',
                        'papyrussample.handlers:SummitsHandler',
                        action='read_many', request_method='GET')
