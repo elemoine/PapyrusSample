@@ -1,11 +1,11 @@
 from pyramid.config import Configurator
 
 import pyramid_beaker
-import pyramid_sqla
-import pyramid_handlers
 
+import pyramid_sqla
 from pyramid_sqla.static import add_static_route
 
+import papyrus
 from papyrus.renderers import geojson_renderer_factory
 
 import papyrus_tilecache
@@ -33,25 +33,9 @@ def main(global_config, **settings):
     config.include(papyrus_tilecache)
 
     # Set up routes and views
-    config.include(pyramid_handlers.includeme)
-    config.add_handler('summits_read_many', '/summits',
-                       'papyrussample.handlers:SummitsHandler',
-                       action='read_many', request_method='GET')
-    config.add_handler('summits_read_one', '/summits/{id}',
-                       'papyrussample.handlers:SummitsHandler',
-                       action='read_one', request_method='GET')
-    config.add_handler('summits_count', '/summits/count',
-                       'papyrussample.handlers:SummitsHandler',
-                       action='count', request_method='GET')
-    config.add_handler('summits_create', '/summits',
-                       'papyrussample.handlers:SummitsHandler',
-                       action='create', request_method='POST')
-    config.add_handler('summits_update', '/summits/{id}',
-                       'papyrussample.handlers:SummitsHandler',
-                       action='update', request_method='PUT')
-    config.add_handler('summits_delete', '/summits/{id}',
-                       'papyrussample.handlers:SummitsHandler',
-                       action='delete', request_method='DELETE')
+    config.include(papyrus)
+    config.add_papyrus_handler('summits', '/summits',
+                               'papyrussample.handlers:SummitsHandler')
     config.add_handler('home', '/', 'papyrussample.handlers:MainHandler',
                        action='index')
     config.add_handler('main', '/{action}', 'papyrussample.handlers:MainHandler',
