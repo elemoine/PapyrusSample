@@ -15,8 +15,8 @@ Base = psa.get_base()
 Session = psa.get_session()
 
 class Summit(GeoInterface, Base):
-    __tablename__ = 'sommets_out'
-    sommet_id = sa.Column(sa.Integer, primary_key=True)
-    name = sa.Column(sa.Unicode(100))
-    elevation = sa.Column(sa.Integer)
-    geom = GeometryColumn('geom', Point(srid=4326))
+    __tablename__ = 'thematic_mapping_world'
+    gid = sa.Column(sa.Integer, primary_key=True)
+    name = sa.Column(sa.Unicode(50))
+    pop2005 = sa.Column(sa.Numeric)
+    the_geom = GeometryColumn('the_geom', Point(srid=4326))

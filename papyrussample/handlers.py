@@ -5,7 +5,7 @@ from pyramid_handlers import action
 from papyrussample.models import Session, Summit
 from papyrus.protocol import Protocol
 
-proto = Protocol(Session, Summit, 'geom')
+proto = Protocol(Session, Summit, 'the_geom')
 
 log = logging.getLogger(__name__)
 
@@ -18,7 +18,7 @@ class MainHandler(object):
         log.debug("testing logging; entered MainHandler.index()")
         return {'project':'papyrussample'}
 
-class SummitsHandler(object):
+class CountriesHandler(object):
     def __init__(self, request):
         self.request = request
 
