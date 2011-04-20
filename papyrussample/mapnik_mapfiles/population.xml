@@ -6,37 +6,37 @@
      <Rule>
       <!-- Built from Seven Class sequential YIGnBu from www.colorbrewer.org -->
       <!-- Quantile breaks originally from QGIS layer classification -->
-      <Filter>[POP2005] = 0 </Filter>
+      <Filter>[pop2005] = 0 </Filter>
       <PolygonSymbolizer fill="#ffffcc"/><!-- Outlines for Antarctica look good -->
       <LineSymbolizer stroke="black" stroke-width=".1"/></Rule>
      
      <Rule>
-      <Filter>[POP2005] &gt; 0 and [POP2005] &lt; 15000</Filter>
+      <Filter>[pop2005] &gt; 0 and [pop2005] &lt; 15000</Filter>
       <PolygonSymbolizer fill="#c7e9b4"/><!-- Outlines for Antarctica look good -->
       <LineSymbolizer stroke="black" stroke-width=".1"/></Rule>
      
      <Rule>
-      <Filter>[POP2005] &gt;= 15000 and [POP2005] &lt; 255000</Filter>
+      <Filter>[pop2005] &gt;= 15000 and [pop2005] &lt; 255000</Filter>
       <PolygonSymbolizer fill="#7fcdbb"/></Rule>
      
      <Rule>
-      <Filter>[POP2005] &gt;= 255000 and [POP2005] &lt; 1300000</Filter>
+      <Filter>[pop2005] &gt;= 255000 and [pop2005] &lt; 1300000</Filter>
       <PolygonSymbolizer fill="#1d91c0"/></Rule>
      
      <Rule>
-      <Filter>[POP2005] &gt;= 1300000 and [POP2005] &lt; 4320000</Filter>
+      <Filter>[pop2005] &gt;= 1300000 and [pop2005] &lt; 4320000</Filter>
       <PolygonSymbolizer fill="#41b6c3"/></Rule>
           
      <Rule>
-      <Filter>[POP2005] &gt;= 4320000 and [POP2005] &lt; 9450000</Filter>
+      <Filter>[pop2005] &gt;= 4320000 and [pop2005] &lt; 9450000</Filter>
       <PolygonSymbolizer fill="#225ea8"/></Rule>
           
      <Rule>
-      <Filter>[POP2005] &gt;= 9450000 and [POP2005] &lt; 25650000</Filter>
+      <Filter>[pop2005] &gt;= 9450000 and [pop2005] &lt; 25650000</Filter>
       <PolygonSymbolizer fill="#225ea8"/></Rule>
           
      <Rule>
-      <Filter>[POP2005] &gt;= 25650000 and [POP2005] &lt; 1134000000</Filter>
+      <Filter>[pop2005] &gt;= 25650000 and [pop2005] &lt; 1134000000</Filter>
       <PolygonSymbolizer fill="#122F7F"/></Rule>
           
      <Rule>
@@ -50,27 +50,27 @@
      <Rule>
       <!--  Only label those countries with over 9 Million People -->
       <!--  Note: Halo and Fill are reversed to try to make them subtle -->
-      <Filter>[POP2005] &gt;= 4320000 and [POP2005] &lt; 9450000</Filter>
+      <Filter>[pop2005] &gt;= 4320000 and [pop2005] &lt; 9450000</Filter>
       <TextSymbolizer name="[NAME]" size="7" fill="black" spacing="5" face-name="DejaVu Sans Bold" halo-fill="#DFDBE3" halo-radius="1" wrap-width="20" allow-overlap="false" avoid-edges="false" minimum-distance="10"/>
      </Rule>
           
      <Rule>
       <!--  Only label those countries with over 9 Million People -->
       <!--  Note: Halo and Fill are reversed to try to make them subtle -->
-      <Filter>[POP2005] &gt;= 9450000 and [POP2005] &lt; 25650000</Filter>
+      <Filter>[pop2005] &gt;= 9450000 and [pop2005] &lt; 25650000</Filter>
       <TextSymbolizer name="[NAME]" size="9" fill="black" spacing="5" face-name="DejaVu Sans Book" halo-fill="#DFDBE3" halo-radius="1" wrap-width="20" allow-overlap="false" avoid-edges="false" minimum-distance="10"/>
      </Rule>
      
      <Rule>
       <!--  Those with over 25 Million get larger labels -->
-      <Filter>[POP2005] &gt;= 25650000 and [POP2005] &lt; 1134000000</Filter>
+      <Filter>[pop2005] &gt;= 25650000 and [pop2005] &lt; 1134000000</Filter>
       <TextSymbolizer name="[NAME]" size="12" fill="white" spacing="5" face-name="DejaVu Sans Book" halo-fill="#2E2F39" halo-radius="1" wrap-width="20" allow-overlap="false" avoid-edges="true" minimum-distance="10"/>
      </Rule>
           
      <Rule>
       <!--  Those with over 25 Million get larger labels -->
       <!--  Note: allow_overlap is true here to allow India to sneak through -->
-      <Filter>[POP2005] &gt;= 1134000000</Filter>
+      <Filter>[pop2005] &gt;= 1134000000</Filter>
       <TextSymbolizer name="[NAME]" size="15" fill="white" spacing="5" face-name="DejaVu Sans Book" halo-fill="black" halo-radius="1" wrap-width="20" allow-overlap="true" avoid-edges="true" minimum-distance="10"/>
      </Rule>
   </Style>
