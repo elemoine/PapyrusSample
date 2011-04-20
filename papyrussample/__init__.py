@@ -11,6 +11,7 @@ import papyrus
 import papyrus_tilecache
 
 from papyrussample.renderer import geojson_renderer_factory
+from papyrussample.views import MapnikRendererFactory
 
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
@@ -27,6 +28,8 @@ def main(global_config, **settings):
     # Configure renderers
     config.add_renderer('.html', 'pyramid.mako_templating.renderer_factory')
     config.add_renderer('geojson', geojson_renderer_factory)
+    config.add_renderer('.xml', MapnikRendererFactory)
+    config.add_renderer('.css', MapnikRendererFactory)
 
     config.add_subscriber('papyrussample.subscribers.add_renderer_globals',
                           'pyramid.events.BeforeRender')
@@ -41,9 +44,11 @@ def main(global_config, **settings):
                                'papyrussample.handlers:CountriesHandler')
     config.add_handler('home', '/', 'papyrussample.handlers:MainHandler',
                        action='index')
-    config.add_route('mapnik', '/mapnik', 'papyrussample.views:mapnik')
+    config.add_route('countries_mapnik', '/countries.png')
     config.add_handler('main', '/{action}', 'papyrussample.handlers:MainHandler',
         path_info=r'/(?!favicon\.ico|robots\.txt|w3c)')
     add_static_route(config, 'papyrussample', 'static', cache_max_age=3600)
+
+    config.scan()
 
     return config.make_wsgi_app()
