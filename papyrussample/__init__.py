@@ -41,6 +41,7 @@ def main(global_config, **settings):
                                'papyrussample.handlers:CountriesHandler')
     config.add_handler('home', '/', 'papyrussample.handlers:MainHandler',
                        action='index')
+    config.add_route('mapnik', '/mapnik', 'papyrussample.views:mapnik')
     config.add_handler('main', '/{action}', 'papyrussample.handlers:MainHandler',
         path_info=r'/(?!favicon\.ico|robots\.txt|w3c)')
     add_static_route(config, 'papyrussample', 'static', cache_max_age=3600)
