@@ -2,10 +2,10 @@ import logging
 
 from pyramid_handlers import action
 
-from papyrussample.models import Session, Summit
+from papyrussample.models import Session, Country
 from papyrus.protocol import Protocol
 
-proto = Protocol(Session, Summit, 'the_geom')
+proto = Protocol(Session, Country, 'the_geom')
 
 log = logging.getLogger(__name__)
 

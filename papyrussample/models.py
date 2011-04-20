@@ -14,7 +14,7 @@ log = logging.getLogger(__name__)
 Base = psa.get_base()
 Session = psa.get_session()
 
-class Summit(GeoInterface, Base):
+class Country(GeoInterface, Base):
     __tablename__ = 'thematic_mapping_world'
     gid = sa.Column(sa.Integer, primary_key=True)
     name = sa.Column(sa.Unicode(50))
