@@ -29,9 +29,6 @@ def main(global_config, **settings):
     config.add_renderer('.xml', MapnikRendererFactory)
     config.add_renderer('.css', MapnikRendererFactory)
 
-    config.add_subscriber('papyrussample.subscribers.add_renderer_globals',
-                          'pyramid.events.BeforeRender')
-
     # Plug TileCache in
     config.include(papyrus_tilecache)
 
