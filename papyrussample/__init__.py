@@ -1,7 +1,6 @@
 from pyramid.config import Configurator
 
 import pyramid_beaker
-import pyramid_handlers
 
 import pyramid_sqla
 from pyramid_sqla.static import add_static_route
@@ -38,17 +37,11 @@ def main(global_config, **settings):
     config.include(papyrus_tilecache)
 
     # Set up routes and views
-    config.include(pyramid_handlers)
     config.include(papyrus)
-    config.add_papyrus_handler('countries', '/countries',
-                               'papyrussample.handlers:CountriesHandler')
-    config.add_handler('home', '/', 'papyrussample.handlers:MainHandler',
-                       action='index')
-    config.add_route('countries_mapnik', '/countries.png')
-    config.add_handler('main', '/{action}', 'papyrussample.handlers:MainHandler',
-        path_info=r'/(?!favicon\.ico|robots\.txt|w3c)')
-    add_static_route(config, 'papyrussample', 'static', cache_max_age=3600)
-
+    config.add_papyrus_routes('countries_vector', '/countries')
+    config.add_route('countries_raster', '/countries.png')
     config.scan()
+
+    add_static_route(config, 'papyrussample', 'static', cache_max_age=3600)
 
     return config.make_wsgi_app()
