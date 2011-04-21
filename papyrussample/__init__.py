@@ -9,9 +9,9 @@ from pyramid_sqla.static import add_static_route
 import papyrus
 
 import papyrus_tilecache
+from papyrus_mapnik.renderers import MapnikRendererFactory
 
 from papyrussample.renderer import geojson_renderer_factory
-from papyrussample.views import MapnikRendererFactory
 
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.

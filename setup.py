@@ -19,6 +19,7 @@ requires = [
     'WebError',
     'papyrus',
     'papyrus_tilecache',
+    'papyrus_mapnik',
     'psycopg2',
 ]
 
