@@ -1,11 +1,10 @@
 from pyramid.config import Configurator
-
 import pyramid_beaker
 
-import pyramid_sqla
+import sqlalchemy as sa
+import sqlahelper
 
 import papyrus
-
 import papyrus_tilecache
 from papyrus_mapnik.renderers import MapnikRendererFactory
 
@@ -17,7 +16,8 @@ def main(global_config, **settings):
     config = Configurator(settings=settings)
 
     # Initialize database
-    pyramid_sqla.add_engine(settings, prefix='sqlalchemy.')
+    engine = sa.engine_from_config(settings, prefix='sqlalchemy.')
+    sqlahelper.add_engine(engine)
 
     # Configure Beaker sessions
     session_factory = pyramid_beaker.session_factory_from_settings(settings)

@@ -1,6 +1,6 @@
 import logging
 
-import pyramid_sqla as psa
+import sqlahelper
 import sqlalchemy as sa
 import sqlalchemy.orm as orm
 import transaction
@@ -11,8 +11,8 @@ from papyrus.geo_interface import GeoInterface
 
 log = logging.getLogger(__name__)
 
-Base = psa.get_base()
-Session = psa.get_session()
+Base = sqlahelper.get_base()
+Session = sqlahelper.get_session()
 
 class Country(GeoInterface, Base):
     __tablename__ = 'thematic_mapping_world'
