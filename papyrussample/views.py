@@ -43,3 +43,8 @@ def update(request):
 def delete(request):
     id = request.matchdict['id']
     return proto.delete(request, id)
+
+
+@view_config(route_name='countries_metadata', renderer='xsd')
+def md(request):
+    return Country
