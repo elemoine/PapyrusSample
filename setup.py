@@ -15,6 +15,7 @@ requires = [
     'zope.sqlalchemy',
     'waitress',
     'papyrus',
+    'simplejson',
     'papyrus_mapnik',
     'psycopg2',
 ]
