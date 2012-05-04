@@ -1,22 +1,30 @@
-import logging
+from sqlalchemy import (
+    Column,
+    Integer,
+    Unicode,
+    Numeric
+    )
 
-import sqlahelper
-import sqlalchemy as sa
-import sqlalchemy.orm as orm
-import transaction
+from sqlalchemy.ext.declarative import declarative_base
+
+from sqlalchemy.orm import (
+    scoped_session,
+    sessionmaker,
+    )
+
+from zope.sqlalchemy import ZopeTransactionExtension
 
 from geoalchemy import GeometryColumn, Point
 
 from papyrus.geo_interface import GeoInterface
 
-log = logging.getLogger(__name__)
+DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
+Base = declarative_base()
 
-Base = sqlahelper.get_base()
-Session = sqlahelper.get_session()
 
 class Country(GeoInterface, Base):
     __tablename__ = 'thematic_mapping_world'
-    gid = sa.Column(sa.Integer, primary_key=True)
-    name = sa.Column(sa.Unicode(50))
-    pop2005 = sa.Column(sa.Numeric)
+    gid = Column(Integer, primary_key=True)
+    name = Column(Unicode(50))
+    pop2005 = Column(Numeric)
     the_geom = GeometryColumn('the_geom', Point(srid=4326))

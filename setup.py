@@ -1,5 +1,4 @@
 import os
-import sys
 
 from setuptools import setup, find_packages
 
@@ -9,34 +8,21 @@ CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 
 requires = [
     'pyramid',
-    'pyramid_beaker',
     'SQLAlchemy',
-    'sqlahelper',
     'transaction',
-    'repoze.tm2',
+    'pyramid_tm',
+    'pyramid_debugtoolbar',
     'zope.sqlalchemy',
-    'WebError',
+    'waitress',
     'papyrus',
-    'papyrus_tilecache',
     'papyrus_mapnik',
     'psycopg2',
 ]
 
-if sys.version_info[:3] < (2,5,0):
-   requires.append('pysqlite')
-    
-entry_points = """\
-    [paste.app_factory]
-    main = papyrussample:main
-
-    [paste.app_install]
-    main = paste.script.appinstall:Installer
-"""
-
 setup(name='PapyrusSample',
       version='0.0',
       description='PapyrusSample',
-      long_description=README + '\n\n' +  CHANGES,
+      long_description=README + '\n\n' + CHANGES,
       classifiers=[
         "Programming Language :: Python",
         "Framework :: Pylons",
@@ -46,14 +32,17 @@ setup(name='PapyrusSample',
       author='',
       author_email='',
       url='',
-      keywords='web pyramid pylons',
+      keywords='web wsgi bfg pylons pyramid',
       packages=find_packages(),
       include_package_data=True,
       zip_safe=False,
+      test_suite='papyrussample',
       install_requires=requires,
       tests_require=requires,
-      test_suite="papyrussample",
-      entry_points=entry_points,
-      paster_plugins=['pyramid'],
+      entry_points="""\
+      [paste.app_factory]
+      main = papyrussample:main
+      [console_scripts]
+      initialize_PapyrusSample_db = papyrussample.scripts.initializedb:main
+      """,
       )
-
