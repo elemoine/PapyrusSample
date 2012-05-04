@@ -26,7 +26,7 @@
                     'papyrus',
                     '${request.route_path('countries_raster')}',
                     {queryable: 'pop2005', 'pop2005__gte': 10000000},
-                    {isBaseLayer: true, singleTile: false}
+					{isBaseLayer: true, transitionEffect: 'resize'}
                 )
             ],
             center: [0, 0],
