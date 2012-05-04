@@ -7,6 +7,12 @@ from .models import (
     Country,
     )
 
+
+@view_config(route_name='home', renderer='index.mak')
+def home(request):
+    return {}
+
+
 proto = Protocol(DBSession, Country, 'the_geom')
 
 
