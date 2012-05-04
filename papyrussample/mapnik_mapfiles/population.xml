@@ -51,27 +51,29 @@
       <!--  Only label those countries with over 9 Million People -->
       <!--  Note: Halo and Fill are reversed to try to make them subtle -->
       <Filter>[pop2005] &gt;= 4320000 and [pop2005] &lt; 9450000</Filter>
-      <TextSymbolizer name="[NAME]" size="7" fill="black" spacing="5" face-name="DejaVu Sans Bold" halo-fill="#DFDBE3" halo-radius="1" wrap-width="20" allow-overlap="false" avoid-edges="false" minimum-distance="10"/>
+      <TextSymbolizer size="7" fill="black" spacing="5" face-name="DejaVu Sans Bold" halo-fill="#DFDBE3" halo-radius="1" wrap-width="20" allow-overlap="false" avoid-edges="false" minimum-distance="10">[NAME]</TextSymbolizer>
      </Rule>
           
      <Rule>
       <!--  Only label those countries with over 9 Million People -->
       <!--  Note: Halo and Fill are reversed to try to make them subtle -->
       <Filter>[pop2005] &gt;= 9450000 and [pop2005] &lt; 25650000</Filter>
-      <TextSymbolizer name="[NAME]" size="9" fill="black" spacing="5" face-name="DejaVu Sans Book" halo-fill="#DFDBE3" halo-radius="1" wrap-width="20" allow-overlap="false" avoid-edges="false" minimum-distance="10"/>
+      <TextSymbolizer size="9" fill="black" spacing="5" face-name="DejaVu Sans Book" halo-fill="#DFDBE3" halo-radius="1" wrap-width="20" allow-overlap="false" avoid-edges="false" minimum-distance="10">[NAME]</TextSymbolizer>
      </Rule>
      
      <Rule>
       <!--  Those with over 25 Million get larger labels -->
       <Filter>[pop2005] &gt;= 25650000 and [pop2005] &lt; 1134000000</Filter>
-      <TextSymbolizer name="[NAME]" size="12" fill="white" spacing="5" face-name="DejaVu Sans Book" halo-fill="#2E2F39" halo-radius="1" wrap-width="20" allow-overlap="false" avoid-edges="true" minimum-distance="10"/>
+      <TextSymbolizer size="12" fill="white" spacing="5" face-name="DejaVu Sans Book" halo-fill="#2E2F39" halo-radius="1" wrap-width="20" allow-overlap="false" avoid-edges="true" minimum-distance="10">[NAME]</TextSymbolizer>
+
      </Rule>
           
      <Rule>
       <!--  Those with over 25 Million get larger labels -->
       <!--  Note: allow_overlap is true here to allow India to sneak through -->
       <Filter>[pop2005] &gt;= 1134000000</Filter>
-      <TextSymbolizer name="[NAME]" size="15" fill="white" spacing="5" face-name="DejaVu Sans Book" halo-fill="black" halo-radius="1" wrap-width="20" allow-overlap="true" avoid-edges="true" minimum-distance="10"/>
+      <TextSymbolizer size="15" fill="white" spacing="5" face-name="DejaVu Sans Book" halo-fill="black" halo-radius="1" wrap-width="20" allow-overlap="true" avoid-edges="true" minimum-distance="10">[NAME]</TextSymbolizer>
+
      </Rule>
   </Style>
   
