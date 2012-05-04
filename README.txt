@@ -1,14 +1,21 @@
-PapyrusSample README
-==================
+PapyrusSample
+=============
 
-Getting Started
----------------
+Run with Waitress
+-----------------
 
-- cd <directory containing this file>
+Run PapyrusSample:
 
-- $venv/bin/python setup.py develop
+    pserve development.ini --reload
 
-- $venv/bin/populate_PapyrusSample development.ini
 
-- $venv/bin/pserve development.ini
+Run with uWSGI
+--------------
 
+Install uWSGI in the virtualenv:
+
+    pip install uwsgi
+
+Run PapyrusSample:
+
+    uwsgi -H /home/elemoine/.virtualenvs/papyrus_mapnik --http :9090 --ini-paste production.ini
