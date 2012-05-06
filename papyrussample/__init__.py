@@ -23,6 +23,6 @@ def main(global_config, **settings):
     config.add_route('home', '/')
     config.add_route('countries_metadata', '/countries/md.xsd')
     config.add_papyrus_routes('countries_vector', '/countries')
-    config.add_route('countries_raster', '/countries.png')
+    config.add_route('countries_raster', '/countries.{format:(png|jpeg)}')
     config.scan()
     return config.make_wsgi_app()
